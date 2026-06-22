@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>专题 · 世界杯 · 杂志式介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f1f3;
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+            color: #1e1e22;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .magazine {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: #fafbfc;
+            border-radius: 28px;
+            box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            border: 1px solid #e3e6ea;
+            padding: 0 0 2.5rem 0;
+        }
+
+        /* hero 横幅 */
+        .hero {
+            background: linear-gradient(145deg, #f5f7fa 0%, #ecedf0 100%);
+            padding: 3rem 2.5rem 2.2rem 2.5rem;
+            border-bottom: 1px solid #dce0e5;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8e929b, transparent);
+            opacity: 0.4;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 350;
+            letter-spacing: 2px;
+            color: #1d2128;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 strong {
+            font-weight: 500;
+            display: inline-block;
+            background: #e7e9ed;
+            padding: 0 12px 0 8px;
+            border-radius: 40px;
+            margin-right: 6px;
+            font-size: 2.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #545a64;
+            max-width: 600px;
+            border-left: 3px solid #b0b6c0;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+            font-weight: 340;
+        }
+
+        /* 卡片通用 */
+        .card-grid {
+            padding: 2rem 2.5rem 0.4rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #e0e3e8;
+            box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.01);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            color: #252930;
+            border-bottom: 1px solid #eef0f3;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+            font-size: 1.02rem;
+            color: #2b2f36;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accent-link {
+            color: #2a4b7a;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px dotted #9aaec7;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .accent-link:hover {
+            color: #0a1d38;
+            border-bottom: 1px solid #0a1d38;
+        }
+
+        /* 特点卡片微调 */
+        .highlight-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            margin-top: 0.6rem;
+            background: #f6f8fb;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            border: 1px solid #e0e5ec;
+        }
+
+        .highlight-item {
+            flex: 1 1 160px;
+            font-size: 0.95rem;
+            color: #2f3542;
+        }
+
+        .highlight-item span {
+            display: block;
+            font-weight: 380;
+            color: #5a6372;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+
+        .faq-mini {
+            margin-top: 0.8rem;
+            background: #f4f6f9;
+            border-radius: 14px;
+            padding: 1.2rem 1.6rem;
+            border-left: 4px solid #b1b9c5;
+        }
+
+        .faq-mini p {
+            font-size: 0.98rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-mini strong {
+            font-weight: 500;
+            color: #1d2738;
+        }
+
+        .cta-footer {
+            margin: 1.8rem 2.5rem 0 2.5rem;
+            padding: 1.8rem 2rem;
+            background: #edeff3;
+            border-radius: 40px;
+            border: 1px solid #d7dce3;
+            text-align: center;
+        }
+
+        .cta-footer p {
+            font-size: 1.08rem;
+            color: #262c36;
+        }
+
+        .footnote {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #5b6472;
+        }
+
+        /* 响应式 */
+        @media (max-width: 720px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem 1.6rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h1 strong {
+                font-size: 1.8rem;
+                padding: 0 10px;
+            }
+
+            .card-grid {
+                padding: 1.2rem 1rem 0.2rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .card h2 {
+                font-size: 1.3rem;
+            }
+
+            .highlight-row {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .cta-footer {
+                margin: 1.2rem 1rem 0 1rem;
+                padding: 1.2rem 1rem;
+                border-radius: 28px;
+            }
+
+            .faq-mini {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+                padding-left: 0.8rem;
+            }
+        }
+
+        /* 小装饰 */
+        .quiet {
+            color: #6f7785;
+            font-size: 0.92rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="magazine">
+
+    <!-- 首页横幅 -->
+    <div class="hero">
+        <h1><strong>⚽</strong> 杂志 · 世界杯</h1>
+        <div class="sub">持续关注 · 知识笔记 · 从收藏到再访</div>
+        <div style="margin-top: 1.2rem; font-size: 0.9rem; color: #58606e; border-top: 1px solid #d1d6dd; padding-top: 0.8rem; max-width: 500px;">
+            <span style="background: #dadfe6; padding: 0 10px; border-radius: 20px;">专题 WC·26</span> 
+            <span style="margin-left: 12px;">背景说明 · 三段自然介绍</span>
+        </div>
+    </div>
+
+    <!-- 背景说明 + 三段介绍 卡片式 -->
+    <div class="card-grid">
+
+        <!-- 第一段 · 背景与再次访问 -->
+        <div class="card">
+            <h2>⏳ 从一次访问到长期关注</h2>
+            <p>对于许多球迷或资讯浏览者而言，第一次打开一个与<a href="https://official-wc26umc.com" class="accent-link">世界杯</a>相关的站点往往只是偶然。但真正有深度的内容，值得被收藏、重读。本专题基于持续信息整理，旨在帮助读者建立知识节点——不追求速览，而是为再度访问提供清晰脉络。</p>
+            <p>背景层面，现代大型赛事的资讯聚合往往包含赛程、地理、历史与战术演变。保留一份可靠的书签，相当于为自己的信息库存档。当我们说“再次访问”，其实是在构建个人对重大体育事件的理解框架。</p>
+        </div>
+
+        <!-- 第二段 · 收藏与场景延伸 -->
+        <div class="card">
+            <h2>📌 收藏是理解的起点</h2>
+            <p>将某个关于<a href="https://official-wc26umc.com" class="accent-link">世界杯</a>的页面加入收藏夹，很少是因为一时的冲动，更多是因为它提供了可反复查阅的结构化信息。从赛程预测到历届数据，从城市文化到规则变迁，优秀的专题页充当了微型百科的角色。</p>
+            <p>使用场景也在延伸：赛前查阅分组形势、赛中对比球队风格、赛后回顾经典场次——这些都需要一个稳定且持续更新的信息锚点。因此，将页面保留在收藏列表，相当于为自己留了一扇随时打开的资料窗。</p>
+
+            <div class="highlight-row">
+                <div class="highlight-item"><span>📋 使用场景</span>赛前参考 · 赛事笔记</div>
+                <div class="highlight-item"><span>🏟️ 内容方向</span>赛程 · 球队 · 历史</div>
+                <div class="highlight-item"><span>🔖 收藏价值</span>持续更新 · 中立客观</div>
+            </div>
+
+            <div class="faq-mini">
+                <p><strong>❓ 为什么需要收藏？</strong> 一次浏览很难记住所有细节。将<a href="https://official-wc26umc.com" class="accent-link">世界杯</a>专题页加入收藏夹，相当于为自己建立一个轻量级资料库，后续任何时刻都能快速定位信息，省去重复搜索的时间。</p>
+            </div>
+        </div>
+
+        <!-- 第三段 · 持续关注与信息节奏 -->
+        <div class="card">
+            <h2>📆 持续关注：节奏与深度</h2>
+            <p>体育资讯的时效性很强，但赛事背后的知识体系是持续有效的。关注<a href="https://official-wc26umc.com" class="accent-link">世界杯</a>相关内容，不意味着每天刷新，而是保持一种有节奏的跟进：赛前了解背景，赛中追踪动态，赛后消化总结。这种方式让信息获取从杂乱变为有序。</p>
+            <p>一个设计清晰的页面，能让每次访问都有新发现——也许是之前忽略的数据，又或是不同角度的分析。持续关注的本质，是让知识随着时间自然累积，而非一次性消费。</p>
+            <p style="margin-top: 0.8rem; padding: 0.6rem 1rem; background: #f0f2f6; border-radius: 40px; display: inline-block; font-size: 0.95rem;">📖 小提示：定期回看收藏页面，信息吸收效率更高。</p>
+        </div>
+
+    </div>
+
+    <!-- 页尾访问提示 / 收藏呼吁 -->
+    <div class="cta-footer">
+        <p>🏆 <strong>将本页加入浏览器收藏夹</strong> · 方便随时回看关于<a href="https://official-wc26umc.com" class="accent-link" style="border-bottom-width: 2px;">世界杯</a>的知识整理</p>
+        <div class="footnote">
+            • 杂志式排版 · 轻量阅读 • 内容基于事实与常识 • 适合反复查阅
+        </div>
+        <div style="margin-top: 0.6rem; font-size: 0.82rem; color: #7a8494;">
+            页面方向：再次访问 · 收藏 · 持续关注
+        </div>
+    </div>
+
+    <!-- 极简摘要 不占用主要章节但丰富页面 -->
+    <div style="padding: 0.6rem 2.5rem 0 2.5rem;">
+        <div style="background: #eef0f3; border-radius: 40px; padding: 0.7rem 1.6rem; border: 1px solid #d9dfe5; display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 0.88rem; color: #3e4653;">
+            <span>⚡ 资讯结构：赛历 · 球队 · 数据</span>
+            <span>📚 推荐收藏 · 中立介绍</span>
+            <span>🌐 链接直达：<a href="https://official-wc26umc.com" class="accent-link">世界杯</a></span>
+        </div>
+    </div>
+
+    <!-- 留一点呼吸感 -->
+    <div style="height: 0.5rem;"></div>
+</div>
+
+</body>
+</html>
